@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=1">
+	<title>Ломбард-Олимп</title>
+    {% load static %}
+	<link rel="icon" href="{% static 'venok.png' %}" type="image/png">
+	<link rel="shortcut icon" href="{% static 'venok.ico' %}" type="img/x-icon">
+
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
+
+	<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/responsive.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/animate.css' %}" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="{% static 'js/jquery.1.8.3.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery-scrolltofixed.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.isotope.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/wow.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/classie.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/magnific-popup.js' %}"></script>
+	<script src="{% static 'contactform/contactform.js' %}"></script>
+</head>
+<body>
+
+
+<!-----------------------------------------------------------------------------------шапка------------------------------------------------------------------------------>
+
+
+	<nav class="main-nav-outer" id="test">
+		<!--main-nav-start-->
+		<div class="container">
+			<ul class="main-nav">
+				<li class="small-logo"><a href="#header"><img src="{% static 'img/venok.png' %}" alt=""></a></li>
+				<li><a href="#glav">Главная</a></li>
+				<li><a href="#infZAYM">Займы</a></li>
+				<li><a href="#infPOKUP">Процесс покупки</a></li>
+				<li><a href="#Portfolio">Магазин</a></li>
+				<li><a href="#contact">Контакты</a></li>
+				{% if loo == -1 %}
+					<li><a href="/registration/">Регистрация</a></li>
+					<li><a href="/login/">Вход</a></li>
+				{% else %}
+					<li><a href="{% url 'kz' %}">Корзина</a></li>
+					{% for post1 in parol %}
+						{% if post1.id_parolya == loo %}
+							<li><a>Аккаунт:    {{ post1.login }} </a></li>
+						{% endif %}
+					{% endfor %}
+					<li><a href="{% url 'vih' %}">Выход</a></li>
+				{% endif %}
+			</ul>
+			<a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+	</nav>
+	<!--main-nav-end-->
+{% if messages %}
+    {% for mess in messages %}
+      <div class="alert-success">
+        {{ mess }}
+      </div>
+    {% endfor %}
+{% endif %}
+<!-----------------------------------------------------------------------------------главная------------------------------------------------------------------------------>
+<section class="main-section alabaster" id="glav">
+		<!--main-section alabaster-start-->
+		<div class="container">
+			<div class="row">
+				<figure class="col-lg-5 col-sm-4 wow fadeInLeft">
+					<img src="{% static 'img/iphone.png' %}" alt="">
+				</figure>
+				<div class="col-lg-7 col-sm-8 featured-work">
+					<h2>Главная</h2>
+					<P class="padding-b">Ломбард-Олимп занимает лидирующие позиции на рынке. Фирма работает на российском рынке с 2003 года и предоставляет полный спектр услуг: </P>
+					<div class="featured-box">
+						<div class="featured-box-col2 wow fadeInRight delay-02s">
+							<h3>Продажа ювелирных изделий</h3>
+							<h4>К таким ювелирным изделиям относятся кольца, цепочки, сережки, браслеты и т.д. </h4>
+						</div>
+					</div>
+					<div class="featured-box">
+						<div class="featured-box-col2 wow fadeInRight delay-04s">
+							<h3>Продажа техники</h3>
+							<h4>К данной технике относится различная бытовая электроника, строительная электроника, акустическая электроника и т.д. </h4>
+						</div>
+					</div>
+					<div class="featured-box">
+						<div class="featured-box-col2 wow fadeInRight delay-06s">
+							<h3>Выдача займов под залог имущества</h3>
+							<h4>В качестве залогового обеспечения мы принимаем: ювелирные изделия, различная техника </h4>
+						</div>
+					</div>
+					<a class="Learn-More" href="#">Learn More</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--main-section alabaster-end-->
+
+<!-----------------------------------------------------------------------------------инф-о-займах------------------------------------------------------------------------------>
+
+
+	<section class="main-section" id="infZAYM">
+		<!--main-section-start-->
+		<div class="container">
+			<h2>Займы</h2>
+			<h6>Выдача денежных средств под залог имущества</h6>
+			<div class="row">
+				<div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
+					<div class="service-list">
+						<div class="service-list-col2">
+							<h3>Как получить займ?</h3>
+							<h4>Необходимо прийти на одну из точек нашей фирмы и предоставить ваще имущество, которое вы хотите заложить, на оценку. После чего вам предоставять всю информацию о стоимости вашего имущества, процентах накладываемых на данный тип вещей.</h4>
+						</div>
+					</div>
+					<div class="service-list">
+						<div class="service-list-col2">
+							<h3>Наша фирма не принимает под залог:</h3>
+							<h4>Устаревшую, но не являющуюся антиквариатом технику</h4>
+							<h4>Приборы для личной гигиены (массажеры, бритвы, машинки для стрижки волос, эпиляторы, электрические зубные щетки)</h4>
+							<h4>Животных и птиц</h4>
+							<h4>Ювелирные изделия из сплавов различных металлов</h4>
+							<h4>Электронные устройства в выключенном состоянии, не имеющие зарядных устройств, а также отдельные детали, работоспособность которых нельзя проверить на месте</h4>
+							<h4>Изъятые из оборота вещи, а также изделия, на оборот которых законодательством РФ установлены соответствующие ограничения</h4>
+						</div>
+					</div>
+				</div>
+				<figure class="col-lg-8 col-sm-6  text-right wow fadeInUp delay-02s">
+					<img src="{% static 'img/pngegg.png' %}" alt="">
+				</figure>
+			</div>
+		</div>
+	</section>
+	<!--main-section-end-->
+
+
+<!-----------------------------------------------------------------------------------инф-о-покупках------------------------------------------------------------------------------>
+
+
+	<section class="main-section alabaster" id="infPOKUP">
+		<!--main-section alabaster-start-->
+		<div class="container">
+			<div class="row">
+				<figure class="col-lg-5 col-sm-4 wow fadeInLeft">
+					<img src="{% static 'img/pnggg.png' %}" alt="">
+				</figure>
+				<div class="col-lg-7 col-sm-8 featured-work">
+					<h2>Информация о процессе покупки</h2>
+					<P class="padding-b">Для произведения покупки, вам необходимо прийти на одну из точек нашей фирмы и произвести следующее:</P>
+					<div class="featured-box">
+						<div class="featured-box-col2 wow fadeInRight delay-02s">
+							<h3>Выбрать понравившуюся вещь</h3>
+							<h4>При необходимости вы можете проконсультироваться с продавцом о каждой вещи</h4>
+						</div>
+					</div>
+					<div class="featured-box">
+						<div class="featured-box-col2 wow fadeInRight delay-04s">
+							<h3>Оплатить</h3>
+							<h4>После того как вы нашли что вам необходимо, нужно оплатить данную вещь и получить ее</h4>
+						</div>
+					</div>
+					<div class="featured-box">
+						<div class="featured-box-col2 wow fadeInRight delay-06s">
+							<h3>Покупка через сайт</h3>
+							<h4>При покупке через сайт, вы можете посмотреть все товары которые имеются в нашей фирме. Также понравившуюся вам необходимо добавить в корзину, но для начала зарегистрироваться, после чего зайти в корзину и, либо отложить понравившиеся вещи, тем самым они будут отложены на 24 часа, после чего вам необходимо прийти в ломбард и оплатить вещь если она вам понравится, либо купить товар прямо на сайте, после чего прийти в ломбард и сразу забрать товар при показе чека оплаты</h4>
+						</div>
+					</div>
+					<a class="Learn-More" href="#">Learn More</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--main-section alabaster-end-->
+
+
+<!-----------------------------------------------------------------------------------магаз------------------------------------------------------------------------------>
+
+
+	<section class="main-section paddind" id="Portfolio">
+		<!--main-section-start-->
+		<div class="container">
+			<h2>Магазин</h2>
+			<h6>Магазин включает в себя товары различных категорий:</h6>
+			<div class="portfolioFilter">
+				<ul class="Portfolio-nav wow fadeIn delay-02s">
+					<li><a href="#" data-filter="*" class="current">Все</a></li>
+					<li><a href="#" data-filter=".branding">Акустика</a></li>
+					<li><a href="#" data-filter=".webdesign">Строй электроника</a></li>
+					<li><a href="#" data-filter=".printdesign">Быт. тех</a></li>
+					<li><a href="#" data-filter=".elec">Электроника</a></li>
+					<li><a href="#" data-filter=".yuvi">Ювелирка</a></li>
+					<li><a href="#" data-filter=".proch">Прочее</a></li>
+				</ul>
+			</div>
+
+		</div>
+		<div class="portfolioContainer wow fadeInUp delay-04s">
+			{% for post in bitTech %}
+				{% if post.id_Sostoyanie_veshi.Sostoyanie == A1 %}
+					<div class="Portfolio-box printdesign">
+						<a href="foto/Portfolio-pic1.jpg"><img src="{{ post.foto.url }}" alt=""></a>
+						<h3>{{ post.Proizvoditel }} {{ post.Nazvanie }}</h3>
+						<h3>Цена: {{ post.Cena }}₽</h3>
+						<p>{{ post.id_kategoriya_bytovaya_elektronika }}</p>
+						<form action="{% url 'products' post.id_Bytovaya_elektronika %}" target="_blank">
+						<button class="btn btn-ouline-warning">Подробнее</button>
+						</form>
+					</div>
+				{% endif %}
+			{% endfor %}
+
+			{% for post in stroyElect %}
+				{% if post.id_Sostoyanie_veshi.Sostoyanie == A1 %}
+					<div class="Portfolio-box webdesign">
+						<a href="foto/Portfolio-pic2.jpg"><img src="{{ post.foto.url }}" alt=""></a>
+						<h3>{{ post.Proizvoditel }} {{ post.Nazvanie }}</h3>
+						<h3>Цена: {{ post.Cena }}₽</h3>
+						<p>{{ post.id_kategoriya_stroy_elektronika }}</p>
+						<form action="{% url 'products1' post.id_Stroy_elektronika %}" target="_blank">
+						<button class="btn btn-ouline-warning">Подробнее</button>
+						</form>
+					</div>
+				{% endif %}
+			{% endfor %}
+
+			{% for post in akustik %}
+				{% if post.id_Sostoyanie_veshi.Sostoyanie == A1 %}
+					<div class=" Portfolio-box branding">
+						<a href="foto/Portfolio-pic3.jpg"><img src="{{ post.foto.url }}" alt=""></a>
+						<h3>{{ post.Proizvoditel }} {{ post.Nazvanie }}</h3>
+						<h3>Цена: {{ post.Cena }}₽</h3>
+						<p>{{ post.id_kategoriya_aud_tehnika }}</p>
+						<p>{{ post.id_Sostoyanie_veshi }}</p>
+						<p>{{ A1 }}</p>
+						<form action="{% url 'products2' post.id_AkustikY %}" target="_blank">
+						<button class="btn btn-ouline-warning">Подробнее</button>
+						</form>
+					</div>
+				{% endif %}
+			{% endfor %}
+
+			{% for post in Elect %}
+				{% if post.id_Sostoyanie_veshi.Sostoyanie == A1 %}
+					<div class=" Portfolio-box elec">
+						<a href="foto/Portfolio-pic4.jpg"><img src="{{ post.foto.url }}" alt=""></a>
+						<h3>{{ post.Proizvoditel }} {{ post.Nazvanie }}</h3>
+						<h3>Цена: {{ post.Cena }}₽</h3>
+						<p>{{ post.id_kategoriya_elektronika }}</p>
+						<form action="{% url 'products3' post.id_Elektronika %}" target="_blank">
+						<button class="btn btn-ouline-warning">Подробнее</button>
+						</form>
+					</div>
+				{% endif %}
+			{% endfor %}
+
+			{% for post in Yuvelir %}
+				{% if post.id_Sostoyanie_veshi.Sostoyanie == A1 %}
+					<div class=" Portfolio-box yuvi">
+						<a href="foto/Portfolio-pic5.jpg"><img src="{{ post.foto.url }}" alt=""></a>
+						<h3>{{ post.id_kategoriya_yuvelirka }}</h3>
+						<h3>Цена: {{ post.Cena }}₽</h3>
+						<p>Ювелирное изделие</p>
+						<form action="{% url 'products4' post.id_Yuvelirka %}" target="_blank">
+						<button class="btn btn-ouline-warning">Подробнее</button>
+						</form>
+					</div>
+				{% endif %}
+			{% endfor %}
+
+			{% for post in Proche %}
+				{% if post.id_Sostoyanie_veshi.Sostoyanie == A1 %}
+					<div class=" Portfolio-box proch">
+						<a href="foto/Portfolio-pic6.jpg"><img src="{{ post.foto.url }}" alt=""></a>
+						<h3>{{ post.Proizvoditel }}</h3>
+						<h3>Цена: {{ post.Cena }}₽</h3>
+						<p>{{ post.Nazvanie }}</p>
+						<form action="{% url 'products5' post.id_Prochee %}" target="_blank">
+						<button class="btn btn-ouline-warning">Подробнее</button>
+						</form>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</section>
+	<!--main-section-end-->
+
+
+<!-----------------------------------------------------------------------------------контакты------------------------------------------------------------------------------>
+
+
+	<!--business-talking-end-->
+	<div class="text-center">
+	<div class="container">
+		<h2>Контакты</h2>
+		<section class="main-section contact" id="contact">
+
+			<div class="row">
+				<div class="col-lg-6 col-sm-7 wow fadeInLeft">
+					<div class="contact-info-box address clearfix">
+						<h3><i class=" icon-map-marker"></i>Адрес 1:</h3>
+						<span>Ул. Циалковского д. 26 <br>Дзержинск, Нижегородская область</span>
+						<h3><i class=" icon-map-marker"></i>Адрес 2:</h3>
+						<span>Ул. Циалковского д. 76<br>Дзержинск, Нижегородская область</span>
+						<h3><i class=" icon-map-marker"></i>Адрес 3:</h3>
+						<span>Ул. Ленина д. 39<br>Дзержинск, Нижегородская область</span>
+						<h3><i class=" icon-map-marker"></i>Адрес 4:</h3>
+						<span>Ул. Чкалова д. 22<br>Дзержинск, Нижегородская область</span>
+						<h3><i class=" icon-map-marker"></i>Адрес 5:</h3>
+						<span>Ул. Дзержинского д. 14<br>Дзержинск, Нижегородская область</span>
+					</div>
+					<div class="contact-info-box phone clearfix">
+						<h3><i class="fa fa-phone"></i>Телефон:</h3>
+						<span>8-962-508-04-44</span>
+					</div>
+					<div class="contact-info-box email clearfix">
+						<h3><i class="fa fa-pencil"></i>email:</h3>
+						<span>sidelnikov.artur@inbox.ru</span>
+					</div>
+					<div class="contact-info-box hours clearfix">
+						<h3><i class="fa fa-clock-o"></i>Часы работы:</h3>
+						<span><strong>Понидельник - Воскресенье:</strong> 8:00 - 20:00</span>
+					</div>
+				</div>
+				</div>
+
+		</section>
+	</div>
+	</div>
+
+
+<!-----------------------------------------------------------------------------------скрипты------------------------------------------------------------------------------>
+
+
+	<script type="text/javascript">
+		$(document).ready(function(e) {
+
+			$('#test').scrollToFixed();
+			$('.res-nav_click').click(function() {
+				$('.main-nav').slideToggle();
+				return false
+
+			});
+
+      $('.Portfolio-box').magnificPopup({
+        delegate: 'a',
+        type: 'image'
+      });
+
+		});
+	</script>
+
+	<script>
+		wow = new WOW({
+			animateClass: 'animated',
+			offset: 100
+		});
+		wow.init();
+	</script>
+
+
+	<script type="text/javascript">
+		$(window).load(function() {
+
+			$('.main-nav li a, .servicelink').bind('click', function(event) {
+				var $anchor = $(this);
+
+				$('html, body').stop().animate({
+					scrollTop: $($anchor.attr('href')).offset().top - 102
+				}, 1500, 'easeInOutExpo');
+				/*
+				if you don't want to use the easing effects:
+				$('html, body').stop().animate({
+					scrollTop: $($anchor.attr('href')).offset().top
+				}, 1000);
+				*/
+				if ($(window).width() < 768) {
+					$('.main-nav').hide();
+				}
+				event.preventDefault();
+			});
+		})
+	</script>
+
+	<script type="text/javascript">
+		$(window).load(function() {
+
+
+			var $container = $('.portfolioContainer'),
+				$body = $('body'),
+				colW = 375,
+				columns = null;
+
+
+			$container.isotope({
+				// disable window resizing
+				resizable: true,
+				masonry: {
+					columnWidth: colW
+				}
+			});
+
+			$(window).smartresize(function() {
+				// check if columns has changed
+				var currentColumns = Math.floor(($body.width() - 30) / colW);
+				if (currentColumns !== columns) {
+					// set new column count
+					columns = currentColumns;
+					// apply width to container manually, then trigger relayout
+					$container.width(columns * colW)
+						.isotope('reLayout');
+				}
+
+			}).smartresize(); // trigger resize to set container width
+			$('.portfolioFilter a').click(function() {
+				$('.portfolioFilter .current').removeClass('current');
+				$(this).addClass('current');
+
+				var selector = $(this).attr('data-filter');
+				$container.isotope({
+
+					filter: selector,
+				});
+				return false;
+			});
+
+		});
+	</script>
+</body>
+</html>

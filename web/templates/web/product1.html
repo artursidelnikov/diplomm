@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=1">
+	<title>{{ product.Nazvanie }}</title>
+    {% load static %}
+	{% load crispy_forms_tags %}
+	<link rel="icon" href="{% static 'venok.png' %}" type="image/png">
+	<link rel="shortcut icon" href="{% static 'venok.ico' %}" type="img/x-icon">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
+
+	<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/responsive.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/animate.css' %}" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="{% static 'js/jquery.1.8.3.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery-scrolltofixed.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.isotope.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/wow.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/classie.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/magnific-popup.js' %}"></script>
+	<script src="{% static 'contactform/contactform.js' %}"></script>
+</head>
+
+<body>
+<!--------------------------------------------------Шапка------------------------------>
+<nav class="main-nav-outer" id="test">
+		<!--main-nav-start-->
+		<div class="container">
+			<ul class="main-nav">
+				<li class="small-logo"><a href="/"><img src="{% static 'img/venok.png' %}" alt=""></a></li>
+				<li><a href="/#glav">Главная</a></li>
+				<li><a href="/#infZAYM">Инф о займах</a></li>
+				<li><a href="/#infPOKUP">Инф о процессе покупки</a></li>
+				<li><a href="/#Portfolio">Магазин</a></li>
+				<li><a href="/#contact">Контакты</a></li>
+				{% if loo == -1 %}
+					<li><a href="/login/">Вход</a></li>
+				{% else %}
+					<li><a href="">Корзина</a></li>
+					{% for post1 in parol %}
+						{% if post1.id_parolya == loo %}
+							<li><a>Аккаунт:    {{ post1.login }} </a></li>
+						{% endif %}
+					{% endfor %}
+					<li><a href="{% url 'vih' %}">Выход</a></li>
+				{% endif %}
+			</ul>
+			<a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+	</nav>
+
+<!--------------------------------------------------Регистрация------------------------------>
+
+<section class="main-section paddind">
+		<!--main-section-start-->
+		<div class="container" style="margin-top: 1%;">
+    		<div class="form-section">
+				<h2>{{ product.Proizvoditel }} {{ product.Nazvanie }}</h2>
+        		<div class="form-section">
+					<div class="text-center">
+						<a href="foto/Portfolio-pic2.jpg"><img src="{{ product.foto.url }}" alt=""> </a>
+					</div>
+					<table class="table" style="margin-top: 5%">
+					<tbody>
+						<tr class="table-active">
+							<th scope="row">Категория:</th>
+							<td>{{ product.id_kategoriya_stroy_elektronika }}</td>
+						</tr>
+						<tr>
+							<th scope="row">Мощность</th>
+							<td>{{ product.moshnost }}W</td>
+						</tr>
+						<tr class="table-active">
+							<th scope="row">Крутящий момент</th>
+							<td>{{ product.krutyshy_moment }} Н*м</td>
+						</tr>
+						<tr>
+							<th scope="row">Аккумулятор</th>
+							<td>{{ product.akkumulyator }} Ач.</td>
+						</tr>
+						<tr class="table-active">
+							<th scope="row">Вес</th>
+							<td>{{ product.ves }} г.</td>
+						</tr>
+						<tr>
+							<th scope="row">Описание</th>
+							<td>{{ product.oisanye }}</td>
+						</tr>
+						<tr class="table-active">
+							<th scope="row">Цена</th>
+							<td>{{ product.Cena }}₽</td>
+						</tr>
+					</tbody>
+					</table>
+					{% if loo == -1 %}
+						<h3>Войдите в аккаунт, чтобы добавить товар в корзину</h3>
+					{% else %}
+						<form action="{% url 'products7' product.id_Stroy_elektronika %}" target="_blank">
+   						<button class="btn btn-secondary">В корзину</button>
+  						</form>
+					{% endif %}
+				</div>
+            </div>
+		</div>
+</section>
+</body>
+</html>
