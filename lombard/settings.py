@@ -111,3 +111,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'home'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import django_heroku
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+django_heroku.settings(locals())
